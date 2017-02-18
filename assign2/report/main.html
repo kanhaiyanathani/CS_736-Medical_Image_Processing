@@ -1,0 +1,562 @@
+
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html><head>
+      <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+   <!--
+This HTML was auto-generated from MATLAB code.
+To make changes, update the MATLAB code and republish this document.
+      --><title>main</title><meta name="generator" content="MATLAB 8.1"><link rel="schema.DC" href="http://purl.org/dc/elements/1.1/"><meta name="DC.date" content="2017-02-12"><meta name="DC.source" content="main.m"><style type="text/css">
+html,body,div,span,applet,object,iframe,h1,h2,h3,h4,h5,h6,p,blockquote,pre,a,abbr,acronym,address,big,cite,code,del,dfn,em,font,img,ins,kbd,q,s,samp,small,strike,strong,sub,sup,tt,var,b,u,i,center,dl,dt,dd,ol,ul,li,fieldset,form,label,legend,table,caption,tbody,tfoot,thead,tr,th,td{margin:0;padding:0;border:0;outline:0;font-size:100%;vertical-align:baseline;background:transparent}body{line-height:1}ol,ul{list-style:none}blockquote,q{quotes:none}blockquote:before,blockquote:after,q:before,q:after{content:'';content:none}:focus{outine:0}ins{text-decoration:none}del{text-decoration:line-through}table{border-collapse:collapse;border-spacing:0}
+
+html { min-height:100%; margin-bottom:1px; }
+html body { height:100%; margin:0px; font-family:Arial, Helvetica, sans-serif; font-size:10px; color:#000; line-height:140%; background:#fff none; overflow-y:scroll; }
+html body td { vertical-align:top; text-align:left; }
+
+h1 { padding:0px; margin:0px 0px 25px; font-family:Arial, Helvetica, sans-serif; font-size:1.5em; color:#d55000; line-height:100%; font-weight:normal; }
+h2 { padding:0px; margin:0px 0px 8px; font-family:Arial, Helvetica, sans-serif; font-size:1.2em; color:#000; font-weight:bold; line-height:140%; border-bottom:1px solid #d6d4d4; display:block; }
+h3 { padding:0px; margin:0px 0px 5px; font-family:Arial, Helvetica, sans-serif; font-size:1.1em; color:#000; font-weight:bold; line-height:140%; }
+
+a { color:#005fce; text-decoration:none; }
+a:hover { color:#005fce; text-decoration:underline; }
+a:visited { color:#004aa0; text-decoration:none; }
+
+p { padding:0px; margin:0px 0px 20px; }
+img { padding:0px; margin:0px 0px 20px; border:none; }
+p img, pre img, tt img, li img { margin-bottom:0px; } 
+
+ul { padding:0px; margin:0px 0px 20px 23px; list-style:square; }
+ul li { padding:0px; margin:0px 0px 7px 0px; }
+ul li ul { padding:5px 0px 0px; margin:0px 0px 7px 23px; }
+ul li ol li { list-style:decimal; }
+ol { padding:0px; margin:0px 0px 20px 0px; list-style:decimal; }
+ol li { padding:0px; margin:0px 0px 7px 23px; list-style-type:decimal; }
+ol li ol { padding:5px 0px 0px; margin:0px 0px 7px 0px; }
+ol li ol li { list-style-type:lower-alpha; }
+ol li ul { padding-top:7px; }
+ol li ul li { list-style:square; }
+
+.content { font-size:1.2em; line-height:140%; padding: 20px; }
+
+pre, tt, code { font-size:12px; }
+pre { margin:0px 0px 20px; }
+pre.error { color:red; }
+pre.codeinput { padding:10px; border:1px solid #d3d3d3; background:#f7f7f7; }
+pre.codeoutput { padding:10px 11px; margin:0px 0px 20px; color:#4c4c4c; }
+
+@media print { pre.codeinput, pre.codeoutput { word-wrap:break-word; width:100%; } }
+
+span.keyword { color:#0000FF }
+span.comment { color:#228B22 }
+span.string { color:#A020F0 }
+span.untermstring { color:#B20000 }
+span.syscmd { color:#B28C00 }
+
+.footer { width:auto; padding:10px 0px; margin:25px 0px 0px; border-top:1px dotted #878787; font-size:0.8em; line-height:140%; font-style:italic; color:#878787; text-align:left; float:none; }
+.footer p { margin:0px; }
+.footer a { color:#878787; }
+.footer a:hover { color:#878787; text-decoration:underline; }
+.footer a:visited { color:#878787; }
+
+table th { padding:7px 5px; text-align:left; vertical-align:middle; border: 1px solid #d6d4d4; font-weight:bold; }
+table td { padding:7px 5px; text-align:left; vertical-align:top; border:1px solid #d6d4d4; }
+
+
+
+
+
+  </style></head><body><div class="content"><h2>Contents</h2><div><ul><li><a href="#1">Q1</a></li><li><a href="#2">Q1 Part a</a></li><li><a href="#4">Q1 Part b</a></li><li><a href="#6">Q1 Part c</a></li><li><a href="#8">Q1 part d</a></li><li><a href="#10">Q1 part e</a></li><li><a href="#11">Q2</a></li><li><a href="#13">Q2 Part a</a></li><li><a href="#16">Q2 part b</a></li><li><a href="#19">Q2 Part c</a></li><li><a href="#22">Q3</a></li><li><a href="#24">Q3 Part a</a></li><li><a href="#28">Q3 Part b</a></li></ul></div><h2>Q1<a name="1"></a></h2><pre class="codeinput">img = phantom(128);
+</pre><h2>Q1 Part a<a name="2"></a></h2><div><ul><li>The required myIntegration() function is in the 'Code' folder.</li></ul></div><p><b>Step size <img src="main_eq02421.png" alt="$\Delta s$"></b> - Inter-pixel distance along any line in the image lies in the range [1, <img src="main_eq79649.png" alt="$\sqrt{2}$"> ] pixel-width units. Hence, the step size should be chosen such that it is between 1 and <img src="main_eq79649.png" alt="$\sqrt{2}$"> pixel-width unit since choosing this step size ensures that just the correct amount of information along that line in the image gets captured in the Radon transform. If the step size is too large, it results in information loss, while a very small step size gives no further information than the above mentioned choice, thus providing no benefit but unnecessary increase in computation.</p><p><b>Interpolation method</b> - We would prefer bilinear interpolation method for the interpolation of image.</p><h2>Q1 Part b<a name="4"></a></h2><p>The required myRadonTrans() function is in the 'Code' folder.</p><p>Radon transform for step size 3 is plotted below:</p><pre class="codeinput">t = -90:5:90;
+theta = 0:5:175;
+Rf = myRadonTrans(img,t,theta,3); <span class="comment">% Radon transform for step size 3</span>
+figure();
+display1(Rf);
+</pre><img vspace="5" hspace="5" src="main_01.png" alt=""> <h2>Q1 Part c<a name="6"></a></h2><p>Radon transform images for different step sizes of s</p><pre class="codeinput">Rf_05 = myRadonTrans(img,t,theta,0.5);
+Rf_1 = myRadonTrans(img,t,theta,1);
+Rf_3 = myRadonTrans(img,t,theta,3);
+figure();
+subplot(1,3,1); imshow(Rf_05/max(max(Rf_05))); title(<span class="string">'Step = 0.5'</span>);xlabel(<span class="string">'\theta----&gt;'</span>);ylabel(<span class="string">'t---&gt;'</span>);
+subplot(1,3,2); imshow(Rf_1/max(max(Rf_1))); title(<span class="string">'Step = 1'</span>);xlabel(<span class="string">'\theta-----&gt;'</span>);ylabel(<span class="string">'t---&gt;'</span>);
+subplot(1,3,3); imshow(Rf_3/max(max(Rf_3))); title(<span class="string">'Step = 3'</span>);xlabel(<span class="string">'\theta-----&gt;'</span>);ylabel(<span class="string">'t---&gt;'</span>);
+
+<span class="comment">% 1D function plots for $\theta = 0$</span>
+Rf_0_05 = myRadonTrans(img,t,0,0.5);
+Rf_0_1 = myRadonTrans(img,t,0,1);
+Rf_0_3 = myRadonTrans(img,t,0,3);
+figure();
+p1 = plot(t,Rf_0_05/max(Rf_0_05),<span class="string">'r'</span>);
+hold <span class="string">on</span>
+p2 = plot(t,Rf_0_1/max(Rf_0_1),<span class="string">'g'</span>);
+hold <span class="string">on</span>
+p3 = plot(t,Rf_0_3/max(Rf_0_3),<span class="string">'b'</span>);
+hold <span class="string">off</span>
+legend([p1 p2 p3],<span class="string">'\Delta s = 0.5'</span>,<span class="string">'\Delta s = 1'</span>,<span class="string">'\Delta s = 3'</span>);
+title(<span class="string">'\theta = 0^o'</span>);
+xlabel(<span class="string">'t'</span>);
+ylabel(<span class="string">'Rf(t,0)'</span>);
+
+<span class="comment">% 1D function plots for $\theta = 90$</span>
+Rf_90_05 = myRadonTrans(img,t,90,0.5);
+Rf_90_1 = myRadonTrans(img,t,90,1);
+Rf_90_3 = myRadonTrans(img,t,90,3);
+figure();
+p1 = plot(t,Rf_90_05/max(Rf_90_05),<span class="string">'r'</span>);
+hold <span class="string">on</span>
+p2 = plot(t,Rf_90_1/max(Rf_90_1),<span class="string">'g'</span>);
+hold <span class="string">on</span>
+p3 = plot(t,Rf_90_3/max(Rf_90_3),<span class="string">'b'</span>);
+hold <span class="string">off</span>
+legend([p1 p2 p3],<span class="string">'\Delta s = 0.5'</span>,<span class="string">'\Delta s = 1'</span>,<span class="string">'\Delta s = 3'</span>);
+title(<span class="string">'\theta = 90^o'</span>);
+xlabel(<span class="string">'t'</span>);
+ylabel(<span class="string">'Rf(t,90)'</span>);
+</pre><img vspace="5" hspace="5" src="main_02.png" alt=""> <img vspace="5" hspace="5" src="main_03.png" alt=""> <img vspace="5" hspace="5" src="main_04.png" alt=""> <h2>Q1 part d<a name="8"></a></h2><div><ul><li>The normalised 1D plot and the image for <img src="main_eq26582.png" alt="$\Delta s = 0.5$"> and <img src="main_eq34215.png" alt="$\Delta s = 1$"> appear similar and are smoother compared to their counterparts with <img src="main_eq02421.png" alt="$\Delta s$"> = 3. This former part can be explained by the fact that both 0.5 and 1 are less than or equal to the inter-pixel distance and hence capture equal amounts of information about the image and hence corresponding 1D plots overlap. The observation that <img src="main_eq92850.png" alt="$\Delta s = 3$"> is rougher can be explained by the fact that larger step size implies a cruder estimate of the integral along any given line.</li></ul></div><div><ul><li>There will be trade off between quality of desired image and the computational cost. If we require high quality then we would choose smaller values of <img src="main_eq48211.png" alt="$\Delta t$"> and <img src="main_eq51210.png" alt="$\Delta \theta$"> as it would result in increased resolution. However, this would increase acquisition time of the CT scan as well the computation involving in reconstructing the required data. Hence value of <img src="main_eq48211.png" alt="$\Delta t$"> and <img src="main_eq51210.png" alt="$\Delta \theta$"> should be chosen depending on the individual requirements in different situations.</li></ul></div><h2>Q1 part e<a name="10"></a></h2><div><ul><li>Increasing the number of pixels in the grid would result in a larger A matrix resulting in better quality of reconstruction but more expensive computation.</li></ul></div><div><ul><li>Larger <img src="main_eq02421.png" alt="$\Delta s$"> implies the measurements 'b' in the ART equation Ax = b would be noisier resulting in poorer reconstruction. On the other hand, smaller <img src="main_eq02421.png" alt="$\Delta s$"> implies better quality of measurements 'b' and hence better reconstruction.</li></ul></div><h2>Q2<a name="11"></a></h2><pre class="codeinput">tic;
+img = phantom(256);
+n_fft = 1024;
+w_max = n_fft/2;
+</pre><h2>Q2 Part a<a name="13"></a></h2><pre class="codeinput">theta = 0:3:177;
+h = radon(img,theta);    <span class="comment">% Radon transform of the image</span>
+backproj_no_filtering = iradon(h,theta,<span class="string">'None'</span>); <span class="comment">% Back projection without filtering</span>
+figure();
+subplot(1,2,1); imshow(img);title(<span class="string">'Original image'</span>);
+subplot(1,2,2); display1(backproj_no_filtering);title(<span class="string">'Unfiltered backprojection'</span>);
+
+<span class="comment">% Computing filtered Radon Transform</span>
+filtered_1_RL = myFilter(h, <span class="string">'Ram-Lak'</span>, w_max,n_fft);
+filtered_1_SL = myFilter(h, <span class="string">'Shepp-Logan'</span>, w_max,n_fft);
+filtered_1_CS = myFilter(h, <span class="string">'Cosine'</span>, w_max,n_fft);
+
+filtered_2_RL = myFilter(h, <span class="string">'Ram-Lak'</span>, w_max/2,n_fft);
+filtered_2_SL = myFilter(h, <span class="string">'Shepp-Logan'</span>, w_max/2,n_fft);
+filtered_2_CS = myFilter(h, <span class="string">'Cosine'</span>, w_max/2,n_fft);
+
+<span class="comment">% Computing filtered backprojection</span>
+reconstructed_1_RL = iradon(filtered_1_RL,theta,<span class="string">'None'</span>);
+reconstructed_1_SL = iradon(filtered_1_SL,theta,<span class="string">'None'</span>);
+reconstructed_1_CS = iradon(filtered_1_CS,theta,<span class="string">'None'</span>);
+
+reconstructed_2_RL = iradon(filtered_2_RL,theta,<span class="string">'None'</span>);
+reconstructed_2_SL = iradon(filtered_2_SL,theta,<span class="string">'None'</span>);
+reconstructed_2_CS = iradon(filtered_2_CS,theta,<span class="string">'None'</span>);
+
+figure();
+subplot(2,3,1); imshow(reconstructed_1_RL); title(<span class="string">'L = \omega_{max}, Ram-Lak'</span>);
+subplot(2,3,2); imshow(reconstructed_1_SL); title(<span class="string">'L = \omega_{max}, Shepp-Logan'</span>);
+subplot(2,3,3); imshow(reconstructed_1_CS); title(<span class="string">'L = \omega_{max}, Cosine'</span>);
+subplot(2,3,4); imshow(reconstructed_2_RL); title(<span class="string">'L = \omega_{max} /2, Ram-Lak'</span>);
+subplot(2,3,5); imshow(reconstructed_2_SL); title(<span class="string">'L = \omega_{max} /2, Shepp-Logan'</span>);
+subplot(2,3,6); imshow(reconstructed_2_CS); title(<span class="string">'L = \omega_{max} /2, Cosine'</span>);
+</pre><img vspace="5" hspace="5" src="main_05.png" alt=""> <img vspace="5" hspace="5" src="main_06.png" alt=""> <p><b>Filter combinations:</b></p><div><ul><li>The smoothness of the reconstructed images increases in the order: Ram-Lak filter &lt; Shepp-Logan filter &lt; Cosine filter</li><li>This is because the low frequency response of all the filters is almost the same while the higher frequencies get more and more attenuated in the above filter order, leader to smoother images.</li></ul></div><p><b>Filter parameters:</b></p><div><ul><li>The corresponding images in any given filter combination for L = <img src="main_eq17157.png" alt="$\omega_{max}/2$"> are smoother than those with L = <img src="main_eq36439.png" alt="$\omega_{max}$">, which is obvious from the fact that the latter contain more high frequency components.</li></ul></div><h2>Q2 part b<a name="16"></a></h2><pre class="codeinput">img = phantom(256);
+
+<span class="comment">% Get blurred images</span>
+mask_1 = fspecial(<span class="string">'gaussian'</span>,11,1);
+blurred_img_1 = conv2(img,mask_1,<span class="string">'same'</span>);
+mask_2 = fspecial(<span class="string">'gaussian'</span>,51,5);
+blurred_img_2 = conv2(img,mask_2,<span class="string">'same'</span>);
+figure();
+subplot(1,3,1); imshow(img);title(<span class="string">'Original image S_0'</span>);
+subplot(1,3,2); imshow(blurred_img_1);title(<span class="string">'S_1 (11,1)'</span>);
+subplot(1,3,3); imshow(blurred_img_2);title(<span class="string">'S_5 (50,5)'</span>);
+
+<span class="comment">% Compute filtered back projections</span>
+theta = 0:3:177;
+Rf_0 = radon(img,theta);
+Rf_1 = radon(blurred_img_1,theta);
+Rf_5 = radon(blurred_img_2,theta);
+
+filtered_Rf0 = myFilter(Rf_0, <span class="string">'Ram-Lak'</span>, 512, 1024);
+filtered_Rf1 = myFilter(Rf_1, <span class="string">'Ram-Lak'</span>, 512, 1024);
+filtered_Rf5 = myFilter(Rf_5, <span class="string">'Ram-Lak'</span>, 512, 1024);
+
+R0 = iradon(filtered_Rf0,theta,<span class="string">'None'</span>);
+R1 = iradon(filtered_Rf1,theta,<span class="string">'None'</span>);
+R5 = iradon(filtered_Rf5,theta,<span class="string">'None'</span>);
+
+figure();
+subplot(1,3,1); imshow(R0);title(<span class="string">'Reconstructed original R_0'</span>);
+subplot(1,3,2); imshow(R1);title(<span class="string">'Reconstructed R_1 (11,1)'</span>);
+subplot(1,3,3); imshow(R5);title(<span class="string">'Reconstructed R_5 (50,5)'</span>);
+
+<span class="comment">% Compute RRMSE</span>
+RRMSE_0 = RRMSE(img,R0)
+RRMSE_1 = RRMSE(blurred_img_1,R1)
+RRMSE_5 = RRMSE(blurred_img_2,R5)
+</pre><pre class="codeoutput">
+RRMSE_0 =
+
+    0.1286
+
+
+RRMSE_1 =
+
+    0.0782
+
+
+RRMSE_5 =
+
+    0.0262
+
+</pre><img vspace="5" hspace="5" src="main_07.png" alt=""> <img vspace="5" hspace="5" src="main_08.png" alt=""> <div><ul><li>The RRMSE is the highest in the original image, lesser in the image with Gaussian filter (11,1) and the least in the image with the Gaussian filter (51,5).</li><li>As the standard deviation increases, the images gets more and more blurred thus resulting in decreased higher frequency components. Since we are using a comparatively large step size <img src="main_eq00849.png" alt="$\Delta \theta = 3$">, we are indeed unable to capture the high frequency components(rapid changes) in the image and hence the image which is the smoothest( the one with Gaussian filter of standard deviation 5) has a reconstruction closest to the corresponding input image.</li></ul></div><h2>Q2 Part c<a name="19"></a></h2><p>RRMSE values as a function of L</p><pre class="codeinput"><span class="keyword">for</span> i = 1:w_max
+    filtered_Rf0 = myFilter(Rf_0, <span class="string">'Ram-Lak'</span>, i, n_fft);
+    filtered_Rf1 = myFilter(Rf_1, <span class="string">'Ram-Lak'</span>, i, n_fft);
+    filtered_Rf5 = myFilter(Rf_5, <span class="string">'Ram-Lak'</span>, i, n_fft);
+
+    R0 = iradon(filtered_Rf0,theta,<span class="string">'None'</span>);
+    R1 = iradon(filtered_Rf1,theta,<span class="string">'None'</span>);
+    R5 = iradon(filtered_Rf5,theta,<span class="string">'None'</span>);
+
+    RRMSE_0(i) = RRMSE(img,R0);
+    RRMSE_1(i) = RRMSE(blurred_img_1,R1);
+    RRMSE_5(i) = RRMSE(blurred_img_2,R5);
+
+<span class="keyword">end</span>
+
+figure();
+p1 = plot(RRMSE_0,<span class="string">'r'</span>); hold <span class="string">on</span>
+p2 = plot(RRMSE_1,<span class="string">'g'</span>); hold <span class="string">on</span>
+p3 = plot(RRMSE_5,<span class="string">'b'</span>); hold <span class="string">off</span>
+legend([p1 p2 p3],<span class="string">'RRMSE(S_0,R_0)'</span>,<span class="string">'RRMSE(S_1,R_1)'</span>,<span class="string">'RRMSE(S_5,R_5)'</span>);
+title(<span class="string">'RRMSE values as a function of L'</span>);
+xlabel(<span class="string">'L'</span>);
+ylabel(<span class="string">'RRMSE'</span>);
+toc;
+</pre><pre class="codeoutput">Elapsed time is 507.998921 seconds.
+</pre><img vspace="5" hspace="5" src="main_09.png" alt=""> <div><ul><li>As we can see from the plots, the RRMSE initially decreases with increasing L, since more and more information about the image is getting captured. The RRMSE becoming constant at higher L values indicates that the phantom image does not contain very high amount of information in high frequency regions.</li></ul></div><div><ul><li>The RRMSE in general decreases in the order original image &gt; blurred with std deviation 1 &gt; blurred with std deviation 5. This is as explained in part (b).</li></ul></div><div><ul><li>Had there been higher frequency acquisition noise in the image, the RRMSE would have increased with increasing L in the current flat regions in the plots.</span>
+</pre><h2>Q3<a name="22"></a></h2><pre class="codeinput">tic;
+<span class="comment">% loading mat files</span>
+CT_Chest = load(<span class="string">'../data/CT_Chest.mat'</span>);
+chest = CT_Chest.imageAC;
+myPhantom = load(<span class="string">'../data/myPhantom.mat'</span>);
+phantom = myPhantom.imageAC;
+</pre><h2>Q3 Part a<a name="24"></a></h2><p>Calculating RRMSE for each <img src="main_eq49435.png" alt="$\theta$"></p><pre class="codeinput">[rrmse_chest, theta_chest] = find_theta(chest);
+[rrmse_phantom, theta_phantom] = find_theta(phantom);
+
+figure();plot(rrmse_chest);xlabel(<span class="string">'\theta --&gt;'</span>);ylabel(<span class="string">'RRMSE ---&gt;'</span>); title(<span class="string">' RRMSE vs \theta for CT Chest'</span>);
+figure();plot(rrmse_phantom);xlabel(<span class="string">'\theta --&gt;'</span>);ylabel(<span class="string">'RRMSE ---&gt;'</span>); title(<span class="string">' RRMSE vs \theta for myPhantom'</span>);
+</pre><img vspace="5" hspace="5" src="main_10.png" alt=""> <img vspace="5" hspace="5" src="main_11.png" alt=""> <p>For the CT Chest data, the value of <img src="main_eq49435.png" alt="$\theta$"> which minimises the RRMSE values between the ground-truth images and the reconstructed images is</p><pre class="codeinput">theta_chest
+</pre><pre class="codeoutput">
+theta_chest =
+
+   165
+
+</pre><p>The optimal <img src="main_eq49435.png" alt="$\theta$"> for the Phantom data is</p><pre class="codeinput">theta_phantom
+</pre><pre class="codeoutput">
+theta_phantom =
+
+    62
+
+</pre><h2>Q3 Part b<a name="28"></a></h2><p>Recontructing for optimal theta</p><pre class="codeinput">reconst_chest= iradon(radon(chest,theta_chest+(0:149)),theta_chest+(0:149));
+reconst_phantom= iradon(radon(phantom,theta_phantom+(0:149)),theta_phantom+(0:149));
+</pre><pre class="codeinput">hFig = figure();
+set(hFig, <span class="string">'Position'</span>, [1 1 1600 500 ]);
+subplot(1,2,1); display1(chest);title(<span class="string">'Original CT Chest image'</span>);
+subplot(1,2,2); display1(reconst_chest); title(<span class="string">'Reconstructed CT Chest image'</span>);
+
+hFig = figure();
+set(hFig, <span class="string">'Position'</span>, [1 1 1600 500 ]);
+subplot(1,2,1); display1(phantom);title(<span class="string">'Original myPhantom image'</span>);
+subplot(1,2,2); display1(reconst_phantom); title(<span class="string">'Reconstructed myPhantom image'</span>);
+
+toc;
+</pre><pre class="codeoutput">Elapsed time is 188.733259 seconds.
+</pre><img vspace="5" hspace="5" src="main_12.png" alt=""> <img vspace="5" hspace="5" src="main_13.png" alt=""> <p class="footer"><br><a href="http://www.mathworks.com/products/matlab/">Published with MATLAB&reg; R2013a</a><br></p></div><!--
+##### SOURCE BEGIN #####
+%% Q1
+
+img = phantom(128);
+%% Q1 Part a
+%%
+% * The required myIntegration() function is in the 'Code' folder.
+%
+% *Step size $\Delta s$* - Inter-pixel distance along any line in the image 
+% lies in the range [1,$\sqrt{2}$] pixel-width units. Hence, the step size should be chosen such that it is
+% between 1 and $\sqrt{2}$ pixel-width unit since choosing this step size
+% ensures that just the correct amount of information along that line in 
+% the image gets captured in the Radon transform. If the step size is too
+% large, it results in information loss, while a very small step size
+% gives no further information than the above mentioned choice, thus
+% providing no benefit but unnecessary increase in computation.
+%
+% *Interpolation method* - We would prefer bilinear interpolation method
+% for the interpolation of image.
+
+%% Q1 Part b
+% The required myRadonTrans() function is in the 'Code' folder.
+%
+% Radon transform for step size 3 is plotted below:
+%% 
+t = -90:5:90;
+theta = 0:5:175;
+Rf = myRadonTrans(img,t,theta,3); % Radon transform for step size 3
+figure();
+display1(Rf);
+
+%% Q1 Part c
+%% 
+% Radon transform images for different step sizes of s
+Rf_05 = myRadonTrans(img,t,theta,0.5);
+Rf_1 = myRadonTrans(img,t,theta,1);
+Rf_3 = myRadonTrans(img,t,theta,3);
+figure();
+subplot(1,3,1); imshow(Rf_05/max(max(Rf_05))); title('Step = 0.5');xlabel('\thetaREPLACE_WITH_DASH_DASHREPLACE_WITH_DASH_DASH>');ylabel('tREPLACE_WITH_DASH_DASH->');
+subplot(1,3,2); imshow(Rf_1/max(max(Rf_1))); title('Step = 1');xlabel('\thetaREPLACE_WITH_DASH_DASHREPLACE_WITH_DASH_DASH->');ylabel('tREPLACE_WITH_DASH_DASH->');
+subplot(1,3,3); imshow(Rf_3/max(max(Rf_3))); title('Step = 3');xlabel('\thetaREPLACE_WITH_DASH_DASHREPLACE_WITH_DASH_DASH->');ylabel('tREPLACE_WITH_DASH_DASH->');
+
+% 1D function plots for $\theta = 0$
+Rf_0_05 = myRadonTrans(img,t,0,0.5);
+Rf_0_1 = myRadonTrans(img,t,0,1);
+Rf_0_3 = myRadonTrans(img,t,0,3);
+figure();
+p1 = plot(t,Rf_0_05/max(Rf_0_05),'r');
+hold on
+p2 = plot(t,Rf_0_1/max(Rf_0_1),'g');
+hold on
+p3 = plot(t,Rf_0_3/max(Rf_0_3),'b');
+hold off
+legend([p1 p2 p3],'\Delta s = 0.5','\Delta s = 1','\Delta s = 3');
+title('\theta = 0^o');
+xlabel('t');
+ylabel('Rf(t,0)');
+
+% 1D function plots for $\theta = 90$
+Rf_90_05 = myRadonTrans(img,t,90,0.5);
+Rf_90_1 = myRadonTrans(img,t,90,1);
+Rf_90_3 = myRadonTrans(img,t,90,3);
+figure();
+p1 = plot(t,Rf_90_05/max(Rf_90_05),'r');
+hold on
+p2 = plot(t,Rf_90_1/max(Rf_90_1),'g');
+hold on
+p3 = plot(t,Rf_90_3/max(Rf_90_3),'b');
+hold off
+legend([p1 p2 p3],'\Delta s = 0.5','\Delta s = 1','\Delta s = 3');
+title('\theta = 90^o');
+xlabel('t');
+ylabel('Rf(t,90)');
+
+%% Q1 part d
+%%
+% * The normalised 1D plot and the image for $\Delta s = 0.5$ and $\Delta s = 1$ appear similar and are
+% smoother compared to their counterparts with $\Delta s$
+% = 3. This former part can be explained by the fact that both 0.5 and 1 are 
+% less than or equal to the inter-pixel distance and hence capture equal amounts of information
+% about the image and hence corresponding 1D plots overlap. The observation that $\Delta s = 3$ is rougher can be explained by the fact that 
+% larger step size implies a cruder estimate of the integral along any given line.
+%
+% * There will be trade off between quality of desired image and the
+% computational cost. If we require high quality then we would choose smaller
+% values of $\Delta t$ and $\Delta \theta$ as it would result in increased resolution.
+% However, this would increase acquisition time of the CT scan as well the
+% computation involving in reconstructing the required data. Hence value of
+% $\Delta t$ and $\Delta \theta$ should be chosen depending on the individual requirements
+% in different situations.
+%
+
+%% Q1 part e
+% * Increasing the number of pixels in the grid would result in a larger A
+% matrix resulting in better quality of reconstruction but more expensive computation.
+% 
+% * Larger \Delta s implies the measurements 'b' in the ART equation Ax = b
+% would be noisier resulting in poorer reconstruction. On the other hand,
+% smaller \Delta s implies better quality of measurements 'b' and hence
+% better reconstruction.
+ 
+%% Q2
+%% 
+tic;
+img = phantom(256);
+n_fft = 1024;
+w_max = n_fft/2;
+
+%% Q2 Part a
+%%
+theta = 0:3:177;
+h = radon(img,theta);    % Radon transform of the image
+backproj_no_filtering = iradon(h,theta,'None'); % Back projection without filtering
+figure();
+subplot(1,2,1); imshow(img);title('Original image');
+subplot(1,2,2); display1(backproj_no_filtering);title('Unfiltered backprojection');
+
+% Computing filtered Radon Transform
+filtered_1_RL = myFilter(h, 'Ram-Lak', w_max,n_fft);
+filtered_1_SL = myFilter(h, 'Shepp-Logan', w_max,n_fft);
+filtered_1_CS = myFilter(h, 'Cosine', w_max,n_fft);
+
+filtered_2_RL = myFilter(h, 'Ram-Lak', w_max/2,n_fft);
+filtered_2_SL = myFilter(h, 'Shepp-Logan', w_max/2,n_fft);
+filtered_2_CS = myFilter(h, 'Cosine', w_max/2,n_fft);
+
+% Computing filtered backprojection
+reconstructed_1_RL = iradon(filtered_1_RL,theta,'None');
+reconstructed_1_SL = iradon(filtered_1_SL,theta,'None');
+reconstructed_1_CS = iradon(filtered_1_CS,theta,'None');
+
+reconstructed_2_RL = iradon(filtered_2_RL,theta,'None');
+reconstructed_2_SL = iradon(filtered_2_SL,theta,'None');
+reconstructed_2_CS = iradon(filtered_2_CS,theta,'None');
+
+figure();
+subplot(2,3,1); imshow(reconstructed_1_RL); title('L = \omega_{max}, Ram-Lak');
+subplot(2,3,2); imshow(reconstructed_1_SL); title('L = \omega_{max}, Shepp-Logan');
+subplot(2,3,3); imshow(reconstructed_1_CS); title('L = \omega_{max}, Cosine');
+subplot(2,3,4); imshow(reconstructed_2_RL); title('L = \omega_{max} /2, Ram-Lak');
+subplot(2,3,5); imshow(reconstructed_2_SL); title('L = \omega_{max} /2, Shepp-Logan');
+subplot(2,3,6); imshow(reconstructed_2_CS); title('L = \omega_{max} /2, Cosine');
+
+%%
+% *Filter combinations:*
+%
+% * The smoothness of the reconstructed images increases in the order:
+% Ram-Lak filter < Shepp-Logan filter < Cosine filter
+% * This is because the low frequency response of all the filters is almost
+% the same while the higher frequencies get more and more attenuated in the
+% above filter order, leader to smoother images. 
+%
+% *Filter parameters:*
+%
+% * The corresponding images in any given filter combination for L =
+% $\omega_{max}/2$ are smoother than those with L = $\omega_{max}$, which is
+% obvious from the fact that the latter contain more high frequency
+% components.
+%
+
+%% Q2 part b
+%%
+
+img = phantom(256);
+
+% Get blurred images
+mask_1 = fspecial('gaussian',11,1);
+blurred_img_1 = conv2(img,mask_1,'same');
+mask_2 = fspecial('gaussian',51,5);
+blurred_img_2 = conv2(img,mask_2,'same');
+figure();
+subplot(1,3,1); imshow(img);title('Original image S_0');
+subplot(1,3,2); imshow(blurred_img_1);title('S_1 (11,1)');
+subplot(1,3,3); imshow(blurred_img_2);title('S_5 (50,5)');
+
+% Compute filtered back projections
+theta = 0:3:177;
+Rf_0 = radon(img,theta);
+Rf_1 = radon(blurred_img_1,theta);
+Rf_5 = radon(blurred_img_2,theta);
+
+filtered_Rf0 = myFilter(Rf_0, 'Ram-Lak', 512, 1024);
+filtered_Rf1 = myFilter(Rf_1, 'Ram-Lak', 512, 1024);
+filtered_Rf5 = myFilter(Rf_5, 'Ram-Lak', 512, 1024);
+
+R0 = iradon(filtered_Rf0,theta,'None');
+R1 = iradon(filtered_Rf1,theta,'None');
+R5 = iradon(filtered_Rf5,theta,'None');
+
+figure();
+subplot(1,3,1); imshow(R0);title('Reconstructed original R_0');
+subplot(1,3,2); imshow(R1);title('Reconstructed R_1 (11,1)');
+subplot(1,3,3); imshow(R5);title('Reconstructed R_5 (50,5)');
+
+% Compute RRMSE
+RRMSE_0 = RRMSE(img,R0)
+RRMSE_1 = RRMSE(blurred_img_1,R1)
+RRMSE_5 = RRMSE(blurred_img_2,R5)
+
+%% 
+% * The RRMSE is the highest in the original image, lesser in the image with
+% Gaussian filter (11,1) and the least in the image with the Gaussian
+% filter (51,5). 
+% * As the standard deviation increases, the images gets more
+% and more blurred thus resulting in decreased higher frequency components.
+% Since we are using a comparatively large step size $\Delta \theta = 3$, we are indeed
+% unable to capture the high frequency components(rapid changes) in the 
+% image and hence the image which is the smoothest( the one with Gaussian filter 
+% of standard deviation 5) has a reconstruction closest to the
+% corresponding input image.
+%
+
+%% Q2 Part c
+%% 
+% RRMSE values as a function of L
+for i = 1:w_max
+    filtered_Rf0 = myFilter(Rf_0, 'Ram-Lak', i, n_fft);
+    filtered_Rf1 = myFilter(Rf_1, 'Ram-Lak', i, n_fft);
+    filtered_Rf5 = myFilter(Rf_5, 'Ram-Lak', i, n_fft);
+
+    R0 = iradon(filtered_Rf0,theta,'None');
+    R1 = iradon(filtered_Rf1,theta,'None');
+    R5 = iradon(filtered_Rf5,theta,'None');
+
+    RRMSE_0(i) = RRMSE(img,R0);
+    RRMSE_1(i) = RRMSE(blurred_img_1,R1);
+    RRMSE_5(i) = RRMSE(blurred_img_2,R5);
+    
+end
+
+figure();
+p1 = plot(RRMSE_0,'r'); hold on
+p2 = plot(RRMSE_1,'g'); hold on
+p3 = plot(RRMSE_5,'b'); hold off
+legend([p1 p2 p3],'RRMSE(S_0,R_0)','RRMSE(S_1,R_1)','RRMSE(S_5,R_5)');
+title('RRMSE values as a function of L');
+xlabel('L');
+ylabel('RRMSE');
+toc;
+
+%%
+%
+% * As we can see from the plots, the RRMSE initially decreases with increasing L, 
+% since more and more information about the image is getting captured. The
+% RRMSE becoming constant at higher L values indicates that the phantom image does not contain
+% very high amount of information in high frequency regions. 
+%
+% * The RRMSE in general decreases in the order original image > blurred
+% with std deviation 1 > blurred with std deviation 5. This is as explained
+% in part (b).
+
+% * Had there been higher frequency acquisition noise in the image, the RRMSE would have increased with
+% increasing L in the current flat regions in the plots. 
+%% Q3
+%%
+tic;
+% loading mat files
+CT_Chest = load('../data/CT_Chest.mat');
+chest = CT_Chest.imageAC;
+myPhantom = load('../data/myPhantom.mat');
+phantom = myPhantom.imageAC;
+
+%% Q3 Part a
+%%
+% Calculating RRMSE for each $\theta$
+[rrmse_chest, theta_chest] = find_theta(chest);
+[rrmse_phantom, theta_phantom] = find_theta(phantom);
+
+figure();plot(rrmse_chest);xlabel('\theta REPLACE_WITH_DASH_DASH>');ylabel('RRMSE REPLACE_WITH_DASH_DASH->'); title(' RRMSE vs \theta for CT Chest');
+figure();plot(rrmse_phantom);xlabel('\theta REPLACE_WITH_DASH_DASH>');ylabel('RRMSE REPLACE_WITH_DASH_DASH->'); title(' RRMSE vs \theta for myPhantom');
+%%
+% For the CT Chest data, the value of $\theta$ which minimises the RRMSE
+% values between the ground-truth images and the reconstructed images is 
+theta_chest
+%%
+% The optimal $\theta$ for the Phantom data is 
+theta_phantom
+
+%% Q3 Part b
+%%
+% Recontructing for optimal theta
+reconst_chest= iradon(radon(chest,theta_chest+(0:149)),theta_chest+(0:149));
+reconst_phantom= iradon(radon(phantom,theta_phantom+(0:149)),theta_phantom+(0:149));
+%%
+hFig = figure();
+set(hFig, 'Position', [1 1 1600 500 ]);
+subplot(1,2,1); display1(chest);title('Original CT Chest image');
+subplot(1,2,2); display1(reconst_chest); title('Reconstructed CT Chest image');
+
+hFig = figure();
+set(hFig, 'Position', [1 1 1600 500 ]);
+subplot(1,2,1); display1(phantom);title('Original myPhantom image');
+subplot(1,2,2); display1(reconst_phantom); title('Reconstructed myPhantom image');
+
+toc;
+
+
+
+##### SOURCE END #####
+--></body></html>
